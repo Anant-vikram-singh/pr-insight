@@ -1,0 +1,42 @@
+# Secrets and local configuration
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python environments and generated files
+.venv/
+venv/
+**/.venv/
+**/venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+**/.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# JavaScript dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# IDE and editor metadata
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+
+# Logs, temporary files, and local databases
+*.log
+logs/
+**/logs/
+*.tmp
+*.temp
+*.db
+*.sqlite
+*.sqlite3
+
