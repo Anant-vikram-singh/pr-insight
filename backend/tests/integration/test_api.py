@@ -14,6 +14,29 @@ def test_health_endpoint() -> None:
     assert response.json() == {"status": "ok"}
 
 
+@pytest.mark.parametrize(
+    "origin",
+    [
+        "https://pr-insight-gold.vercel.app",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+)
+def test_cors_allows_frontend_origins(origin: str) -> None:
+    with TestClient(create_app(Settings())) as client:
+        response = client.options(
+            "/api/reviews",
+            headers={
+                "Origin": origin,
+                "Access-Control-Request-Method": "POST",
+                "Access-Control-Request-Headers": "content-type",
+            },
+        )
+
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == origin
+
+
 def test_inspection_endpoint_with_mocked_github() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         if request.url.path.endswith("/pulls/1"):
